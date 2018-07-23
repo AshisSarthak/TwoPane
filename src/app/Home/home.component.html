@@ -1,0 +1,49 @@
+<section class='contentWrapper'>
+    <section class="contentHeader"> Original Information </section>
+    <section class='headers'>
+        <section [className]='getClass(item)' *ngFor="let item of displayData;let i = index;" (mouseover)="hideDDFn()">
+            <section class='nameLogin' (click)="selectItem(item)">
+                <section class='name'>{{item.name}}</section>
+                <section class='login'>{{item.login}}</section>
+            </section>
+            <section class='close' (click)="removeItem(i)">X</section>
+        </section>
+        <section class='header' *ngIf="hiddenData.length">
+            <section class='dropdown' (mouseover)="showDDFn($event)" >{{hiddenData.length}} More </section>
+            <section class='dd' #dd *ngIf="showDD">
+                <section class='nameLogin' *ngFor="let item of hiddenData;let i = index;" (click)="selectItem(item, true)">
+                    <section class='name'>{{item.name}}</section>
+                    <section class='login'>{{item.login}}</section>
+                </section>
+            </section>
+            
+        </section>
+        <section [className]="getTranClass()" (click)="showAddTransaction()" (mouseover)="hideDDFn()">
+            <section class="transactionHeader">
+                Add Transaction
+            </section>
+        </section>
+    </section>
+    <section class='infoContent'>
+        <section *ngIf="isTransaction">
+            <section class='addDetails'>
+                <section class='formSection'>
+                    <section class='nameField'>
+                        <label class='placeHold'> Name : </label>
+                        <input type="text" class='formInput' [(ngModel)]="addItem.name" />
+                    </section>
+                    <section class='loginField'>
+                        <label class='placeHold'> Login : </label>
+                        <input type="text" class='formInput' [(ngModel)]="addItem.login" />
+                    </section>
+                </section>
+                <button class='addTrBtn' (click)="addItemFn()">Create</button>
+            </section>
+        </section>
+        <section *ngIf="!isTransaction">
+            <section class='intro'>
+                Hi {{selectedItem.name}}
+            </section>
+        </section>
+    </section>
+</section>
